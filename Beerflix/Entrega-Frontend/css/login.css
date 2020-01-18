@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+*, *:after, *:before {
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+
+img {
+  width: 200px;
+  height: 100px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  font-size: 30px;
+  margin: 0;
+}
+header > div{
+  background-color: black;
+  color: white;
+  height: 60px;
+}
+a {
+  color: whitesmoke;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  position: fixed;
+  content: "";
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  background-color: rgba(1, 1, 1, 1);
+  color: white;
+  text-align: center;
+  height: 100vh;
+  min-width: 350px;
+  
+}
+.login-wrapper {
+  margin: 0 auto;
+  background-color: rgba(100, 100, 100, .3);
+  width: 35%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  position: absolute;
+  margin: auto;
+  top: 20px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.login-inputs {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.login-inputs > input {
+  margin: 5px;
+  border-radius: 5%;
+  background-color: black;
+  border-color: gray;
+  color: white;
+  padding: 8px;
+}
+.login-inputs > a {
+  color: white;
+  padding-top: 20px;
+}
+
+.checkbox {
+  text-align: left;
+  padding-top: 20px;
+}
+.submit {
+  background-color: darkred;
+  border: solid 1px black;
+  color: white;
+  width: 200px;
+  margin: 30px auto;
+  height: 30px;
+  border-radius: 10px;
+}
+.submit > a {
+  text-decoration: none;
+}
+.footer {
+  background-color:rgba(1, 1, 1, .8);
+  color: whitesmoke;
+  height: 50px;
+}
+.aside-ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding-top: 15px;
+
+}
+@media all and (max-width: 768px) {
+  .login-wrapper {
+    margin: auto auto;
+    font-size: 10px;
+    width: 70%;
+    max-width: 70%;
+  }
+  .login-inputs > input {
+    display: block;
+    width: 95%;
+
+  }
+  .login-inputs > a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  button[type="submit"] {
+    width: 100%;
+  }
+  .logo {
+    position: relative;
+  }
+  .login-wrapper > p {
+    padding: 10px;
+  }
+  
+}
+@media all and (max-width: 400px) {
+  .footer {
+    height: 100%;
+  }
+  .aside-ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 5px;
+    padding: 10px;
+    
+  }
+}
