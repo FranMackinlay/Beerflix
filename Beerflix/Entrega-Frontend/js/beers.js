@@ -41,7 +41,6 @@ const renderBeer = (element, items) => {
 const renderHomeBeers = async search => {
   try {
     const beers = await getBeers(search);
-    console.log(beers);
     const beerList = document.getElementById('beer-list');
     renderBeer(beerList, beers);
   } catch (err) {

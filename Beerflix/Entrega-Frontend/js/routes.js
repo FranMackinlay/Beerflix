@@ -7,9 +7,6 @@ const { getItem } = storage(STORAGE_TYPE);
 
 
 page('/', () => {
-  console.log(getItem(INPUT_STORAGE_ID));
-  removeForm();
-  
   renderHomeBeers(getItem(INPUT_STORAGE_ID));  
   
 });

@@ -6,7 +6,6 @@ const searchAPIEndpoint = `${API_URL}/beers?search=`;
 const beersAPIEndpoint = `${API_URL}/beers`;
 return {
     getBeers: async text => {
-      console.log(text);
       try {
         const URL = text ? `https://beerflix-api.herokuapp.com/api/v1/beers?search=${text}` : beersAPIEndpoint;
         const response = await fetch(URL, {
@@ -20,7 +19,6 @@ return {
           throw new Error('Error retrieving beers');
         }
         const data = await response.json();
-        console.log(text, data);
         const beers = data.beers.map(result => {
           if(result.beer){
             return result.beer;

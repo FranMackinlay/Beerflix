@@ -71,7 +71,9 @@ const renderForm = id => {
 
 export const removeForm = () => {
   const formSection = document.querySelector('#searchInput');
+  
   formSection.innerHTML = '';
+  console.log(formSection.innerHTML);
 };
 
 const renderDetail = async id => {
