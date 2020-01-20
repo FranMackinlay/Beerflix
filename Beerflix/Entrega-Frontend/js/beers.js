@@ -13,11 +13,11 @@ const templateBeers = beer => {
       </header>
       <div class="card-content">
         <div class="card-content-image">
-          <img src="./img/keg.png">
+          <img src="${beer.image}">
         </div>
         <div class="card-content-text">
           <p id="beer-info-short">
-            ${beer.brewersTips}
+            ${beer.description}
           </p>
         </div>
       </div>
