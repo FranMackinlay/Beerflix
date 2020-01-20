@@ -26,38 +26,35 @@
   </nav>
   <header class="header">
     <div class="header-wrapper">
+      <img src="./img/beer-index.jpg" alt="Header Image">
     </div>
   </header>
   <main class="main">
     <section class="lists-container">
       <div class="series-list1" id="nuestras-cervezas">
         <h3>Nuestras Cervezas</h3>
-        <ul class="ul-list">
-          <li>
-            <div class="serie-card">
-              <div class="card-image">
-                
-              </div>
-              <div class="card-info">
-                <h2>Nombre</h2>
-                <img src="" alt="Imagen de cerveza">
-                <ul>
-                  <li>
-                    <p>Precio</p>
-                  </li>
-                  <li>firstbrewed</li>
-                  <li>
-                    <p>
-                      descripcion
-                    </p>
-                  </li>
-                  <li>Comentario
-                  </li>
-                </ul>
-              </div>
+        <div class="input-group">
+          <input type="text" class="search" placeholder="Buscar..">
+          <input type="date" name="date" id="date">
+        </div>
+        <div class="beer-card">
+          <header class="card-header">
+            <h2>${beer.name}</h2>
+            <div class="card-price-content">
+              ${beer.price}
             </div>
-          </li>
-        </ul>
+          </header>
+          <div class="card-content">
+            <div class="card-content-image">
+              <img src="./img/keg.png">
+            </div>
+            <div class="card-content-text">
+              <p>
+                ${beer.summary}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
