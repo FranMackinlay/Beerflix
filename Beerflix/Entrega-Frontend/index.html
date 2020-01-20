@@ -33,32 +33,53 @@
     <section class="lists-container">
       <div class="series-list1" id="nuestras-cervezas">
         <h3>Nuestras Cervezas</h3>
-        <div class="input-group">
-          <input type="text" class="search" placeholder="Buscar..">
+        <form id="search-form" class="input-group" novalidate>
+            <input required placeholder="Buscar cerveza.." class="input search"
+              type="text">
+            <button type="submit" class="search">Buscar</button>
+          </form>
+        <!-- <div class="input-group">
+          <input id="searchInput" type="text" class="search" placeholder="Buscar..">
           <input type="date" name="date" id="date">
-        </div>
-        <div class="beer-card">
-          <header class="card-header">
-            <h2>${beer.name}</h2>
-            <div class="card-price-content">
-              ${beer.price}
+        </div> -->
+        <div id="beer-list">
+          <!-- <div class="beer-card">
+            <header class="card-header">
+              <h2>${beer.name}</h2>
+              <div class="card-price-content">
+                ${beer.price}
+              </div>
+            </header>
+            <div class="card-content">
+              <div class="card-content-image">
+                <img src="./img/keg.png">
+              </div>
+              <div class="card-content-text">
+                <p>
+                  ${beer.summary}
+                </p>
+              </div>
             </div>
-          </header>
-          <div class="card-content">
-            <div class="card-content-image">
-              <img src="./img/keg.png">
-            </div>
-            <div class="card-content-text">
-              <p>
-                ${beer.summary}
-              </p>
-            </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
   </main>
-  <footer></footer>
+  <div id="loader" class="loader-container hide">
+      <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+  <script type="module" src="/./js/routes.js"></script>
 </body>
 
 </html>
