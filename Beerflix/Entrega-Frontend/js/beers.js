@@ -4,24 +4,26 @@ const { getBeers } = api();
 
 const templateBeers = beer => {
   return `
-    <div class="beer-card">
-      <header class="card-header">
-        <h2>${beer.name}</h2>
-        <div class="card-price-content">
-          $${beer.price}
-        </div>
-      </header>
-      <div class="card-content">
-        <div class="card-content-image">
-          <img src="${beer.image}">
-        </div>
-        <div class="card-content-text">
-          <p id="beer-info-short">
-            ${beer.description}
-          </p>
+    <a href="/beers/${beer.beerId}">
+      <div class="beer-card">
+        <header class="card-header">
+          <h2>${beer.name}</h2>
+          <div class="card-price-content">
+            $${beer.price}
+          </div>
+        </header>
+        <div class="card-content">
+          <div class="card-content-image">
+            <img src="${beer.image}">
+          </div>
+          <div class="card-content-text">
+            <p id="beer-info-short">
+              ${beer.brewersTips}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   `;
 };
 

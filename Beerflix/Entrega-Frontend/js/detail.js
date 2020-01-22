@@ -1,93 +1,111 @@
 import api from './api.js';
 
-const detailTemplate = ({ id, name, image, summary } = {}) => {
+const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, brewersTips, likes} = {}) => {
   return `
     <div class="detail-section">
-      <header id="${id}">
+      <header id="${beerId}">
         <div class="title-section">
           <h1>${name}</h1>
         </div>
         <div class="image-container">
-          <img src="${image ? image.original : '/images/defaultImage.png'}" />
+          <img src="${image}"/>
+        </div>
+        <div class="card-price-content">
+          $${price}
         </div>
       </header>
+      <div class="first-likes">
+        <div class="likes">
+          Likes: ${likes}
+        </div>
+      </div>
+      <div class="firstBrewed">
+          First Brewed: ${firstBrewed}
+        </div>
       <div class="content">
-        ${summary}
+        ${description}
+      </div>
+      <div class="more-info">
+        <div class="brewersTips">
+          <p>Tip:</p>
+          
+          ${brewersTips}
+        </div>
+        <div class="comment-likes">
+          <div id="commentList">
+            <p>Comments:</p>
+          </div>
+          
+        </div>
       </div>
     </div>
   `;
 };
 
-const quoteTemplate = ({quote, date}) => {
+const stringify = str => {
+  return JSON.stringify(str);
+};
+
+const commentTemplate = ({ comment }) => {
   return `
     <div class="list-item">
-      <p>${quote}</p>
-      <span>${date}</span>
+      <p>${comment}</p>
     </div>
   `;
 };
 
-const quotesFormtemplate = `
+const commentsFormtemplate = `
   <div id="detail" class="detail-content"></div>
-  <div class="quotes-list">
-    <h2>Quotes</h2>
-    <div id="quoteList">
-    </div>
+  <div class="comments-list">
+    <h2>Comments</h2>
+    
   </div>
-  <form id="quote-form" class="quote-form" novalidate>
-    <div class="quote-input">
-      <label for="quote">Quote of this Beer</label>
-      <input required id="quote" placeholder="Add your quote" class="input primary" type="text">
+  <form id="comment-form" class="comment-form" novalidate>
+    <div class="comment-input">
+      <label for="comment">comment of this Beer</label>
+      <input required id="comment" placeholder="Add your comment" class="input primary" type="text">
     </div>
-    <button type="submit" class="button primary">Add quote</button>
+    <button type="submit" class="button primary">Add comment</button>
   </form>
 `;
 
+// const commentS_API = 'https://beerflix-api.herokuapp.com/api/v1/beers/1';
 
-
-const QUOTES_API = 'https://quotes-api-keepcoding.herokuapp.com/api/v1';
-
-const {getBeerDetail} = api();
-const {getQuotes, createQuote} = api(QUOTES_API);
+const { getBeerDetail } = api();
+const { getComments, createComment } = api();
 
 const renderForm = id => {
-  const formSection = document.querySelector('#detailSection');
-  formSection.innerHTML = quotesFormtemplate;
-  const quoteForm = document.getElementById('quote-form');
-  const quotesInput = document.getElementById('quote');
-  const quotesList = document.getElementById('quoteList');
-  quoteForm.addEventListener('submit', async evento => {
-    evento.preventDefault();
-    if (quotesInput.validity.valid) {
-      // Llamar API para crear Quote
-      const result = await createQuote(id, quotesInput.value);
+  const formSection = document.querySelector('comments-list');
+  formSection.innerHTML = commentsFormtemplate;
+  const commentForm = document.getElementById('comment-form');
+  const commentsInput = document.getElementById('comment');
+  const commentsList = document.getElementById('commentList');
+  commentForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (commentsInput.validity.valid) {
+      // Llamar API para crear comment
+      const result = await createComment(id, commentsInput.value);
       // Renderizo o pinto en el DOM
-      quoteList.innerHTML += quoteTemplate(result);
-      quotesInput.value = '';
+      commentsList.innerHTML += commentTemplate(result);
+      commentsInput.value = '';
     }
-    
   });
-};
-
-export const removeForm = () => {
-  const formSection = document.querySelector('#searchInput');
-  
-  formSection.innerHTML = '';
-  console.log(formSection.innerHTML);
 };
 
 const renderDetail = async id => {
   try {
-    const [detail, quotes] = await Promise.all([
+    const [detail, comments] = await Promise.all([
       getBeerDetail(id),
-      getQuotes(id),
+      getComments(id)
     ]);
-    const template = detailTemplate(detail);
+    const template = detailTemplate(detail.beer);
+    console.log(template);
     const mainSection = document.querySelector('main');
-    renderForm(id);
-    const quoteList = document.querySelector('#quoteList');
-    quoteList.innerHTML = quotes.map(quoteTemplate).join('');
+    // renderForm(id);
+    
     mainSection.innerHTML = template;
+    const commentList = document.getElementById('commentList');
+    commentList.innerHTML +=  comments.map(commentTemplate).join('');
   } catch (err) {
     // manejo erores
     console.log(err);

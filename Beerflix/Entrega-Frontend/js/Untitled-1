@@ -1,0 +1,5 @@
+<div class="comments-list">
+        <div class="list-item">
+          Comments:<p>${stringify(comments)}</p>
+        </div>
+      </div>

@@ -17,5 +17,6 @@ searchForm.addEventListener('submit', event => {
     renderHomeBeers(searchInput.value);
     setItem(INPUT_STORAGE_ID, searchInput.value);
     searchForm.reset();
+    searchInput.innerHTML = '';
   }
 });
