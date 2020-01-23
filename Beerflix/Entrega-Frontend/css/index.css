@@ -251,7 +251,7 @@ a {
     margin: 20px auto;
     width: 80%;
   }
-  .first-likes {
+  #first-likes {
     margin: 0 auto;
     width: 80%;
     text-align: end;
@@ -271,16 +271,26 @@ a {
     margin: 10px 0 10px 0;
   }
   .comment-likes {
-    display: flex;
-    justify-content: space-between;
+    text-align: start;
   }
 
-  #commentList > p {
+  .comment-likes > p {
     margin: 0;
     text-align: start;
   }
   #commentList > div {
     text-align: start;
+  }
+  #commentForm {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .comment-form > button {
+    border: solid 1px black;
+    background-color: #DEB841;
+    border-radius: 10px;
+    margin: 10px;
   }
 
   

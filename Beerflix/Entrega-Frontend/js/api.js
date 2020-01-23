@@ -80,12 +80,36 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
             'X-API-KEY': API_KEY
           }
         });
-        console.log(response)
+        
         if (!response.ok) {
           throw new Error('Error createComment');
         }
-        const responseBody = await response.json();
-        return responseBody;
+        const commentsJson = await response.json();
+        const comments = commentsJson.beer.comments;
+        console.log(comments);
+        return comments;
+      } catch (err) {
+        console.error(err);
+        throw err;
+      }
+    },
+    addLike: async (id) => {
+      try {
+        const response = await fetch (`${API_URL}/beers/${id}/like`, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+            'X-API-KEY': API_KEY
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Error createComment');
+        }
+        const likesJson = await response.json();
+        const likes = likesJson.beer.likes;
+        console.log(likes);
+        return likes;
       } catch (err) {
         console.error(err);
         throw err;

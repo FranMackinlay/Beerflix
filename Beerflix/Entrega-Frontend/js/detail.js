@@ -14,9 +14,12 @@ const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, 
           $${price}
         </div>
       </header>
-      <div class="first-likes">
+      <div id="first-likes">
         <div class="likes">
           Likes: ${likes}
+        </div>
+        <div id="like-button-container">
+          <button type="submit" id="likeButton">Like this beer!</button> 
         </div>
       </div>
       <div class="firstBrewed">
@@ -32,11 +35,13 @@ const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, 
           ${brewersTips}
         </div>
         <div class="comment-likes">
-          <div id="commentList">
-            <p>Comments:</p>
+          <p>Comments:</p>
+          <div id="commentForm">
           </div>
-          
+          <div id="commentList">
+          </div>  
         </div>
+        
       </div>
     </div>
   `;
@@ -46,23 +51,20 @@ const stringify = str => {
   return JSON.stringify(str);
 };
 
-const commentTemplate = ({ comment }) => {
+const commentTemplate = ({ comment, dateComment }) => {
   return `
     <div class="list-item">
       <p>${comment}</p>
+      ${dateComment}
     </div>
   `;
 };
 
 const commentsFormtemplate = `
   <div id="detail" class="detail-content"></div>
-  <div class="comments-list">
-    <h2>Comments</h2>
-    
-  </div>
   <form id="comment-form" class="comment-form" novalidate>
     <div class="comment-input">
-      <label for="comment">comment of this Beer</label>
+      <label for="comment">Write your comment below: </label>
       <input required id="comment" placeholder="Add your comment" class="input primary" type="text">
     </div>
     <button type="submit" class="button primary">Add comment</button>
@@ -72,10 +74,10 @@ const commentsFormtemplate = `
 // const commentS_API = 'https://beerflix-api.herokuapp.com/api/v1/beers/1';
 
 const { getBeerDetail } = api();
-const { getComments, createComment } = api();
+const { getComments, createComment, addLike } = api();
 
 const renderForm = id => {
-  const formSection = document.querySelector('comments-list');
+  const formSection = document.getElementById('commentForm');
   formSection.innerHTML = commentsFormtemplate;
   const commentForm = document.getElementById('comment-form');
   const commentsInput = document.getElementById('comment');
@@ -85,10 +87,35 @@ const renderForm = id => {
     if (commentsInput.validity.valid) {
       // Llamar API para crear comment
       const result = await createComment(id, commentsInput.value);
+      console.log(result);
+
       // Renderizo o pinto en el DOM
       commentsList.innerHTML += commentTemplate(result);
       commentsInput.value = '';
     }
+  });
+};
+
+const likesTemplate = likes => {
+  return `
+    <div class="likes">
+      Likes: ${likes}
+    </div>
+    <div id="like-button-container">
+     <button type="submit" id="likeButton">Like this beer!</button> 
+    </div>`;
+}
+
+const renderLikes = id => {
+  const likeButton = document.getElementById('likeButton');
+  likeButton.addEventListener('click', async event => {
+    console.log('click!!!');
+    event.preventDefault();
+    const firstLikes = document.getElementById('first-likes');
+    const like = await addLike(id);
+    firstLikes.innerHTML = likesTemplate(like);
+    // console.log(like); 
+
   });
 };
 
@@ -99,11 +126,12 @@ const renderDetail = async id => {
       getComments(id)
     ]);
     const template = detailTemplate(detail.beer);
-    console.log(template);
     const mainSection = document.querySelector('main');
-    // renderForm(id);
+    
     
     mainSection.innerHTML = template;
+    renderForm(id);
+    renderLikes(id);
     const commentList = document.getElementById('commentList');
     commentList.innerHTML +=  comments.map(commentTemplate).join('');
   } catch (err) {
