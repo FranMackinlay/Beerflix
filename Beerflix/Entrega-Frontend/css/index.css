@@ -127,6 +127,19 @@ div[class^="series-list"]>ul {
 }
 .input-group {
   margin: 10px 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.input-group > button {
+  position: absolute;
+  left: 120px;
+}
+.input-search {
+  width: 115px;
+}
+#date-filter {
+  width: 118px;
+  background: whitesmoke;
 }
 .beer-card {
   margin: 15px 0 15px 0;

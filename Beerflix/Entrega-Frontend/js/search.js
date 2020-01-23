@@ -7,7 +7,7 @@ export const STORAGE_TYPE = 'lStorage';
 const { setItem, getItem } = storage('lStorage')
 
 const searchForm = document.querySelector('#search-form');
-const searchInput = document.querySelector('.input.search');
+const searchInput = document.querySelector('.input-search');
 
 searchInput.value = getItem(INPUT_STORAGE_ID);
 
