@@ -36,29 +36,30 @@
       <div class="series-list1" id="nuestras-cervezas">
         <h3>Nuestras Cervezas</h3>
         <form id="search-form" class="input-group" novalidate>
-            <input id="searchInput" required placeholder="Buscar cerveza.." class="input-search"
-              type="text">
+          <div class="search-container">
+            <input id="searchInput" required placeholder="Buscar cerveza.." class="input-search" type="text">
             <button type="submit" class="search">Buscar</button>
-            <input type="date" name="date" id="date-filter">
-          </form>
+          </div>
+          <input type="date" name="date" id="date-filter">
+        </form>
         <div id="beer-list">
-        
+
         </div>
       </div>
     </section>
   </main>
   <div id="loader" class="loader-container hide">
-      <div class="lds-roller">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
   <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   <script type="module" src="/./js/routes.js"></script>
