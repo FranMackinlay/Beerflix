@@ -48,6 +48,7 @@ h2 {
   z-index: 999;
   display: flex;
   align-items: center;
+  height: 70px;
 }
 
 .navbar>.navbar-list {
@@ -80,12 +81,16 @@ h2 {
   text-align: center;
   margin: 0 auto;
   height: auto;
-  width: auto;
-  display: none;
+  width: 100%;
 
 }
 img {
-  width: 10%;
+  width: 100%;
+  height: 550px;
+}
+.card-content-image > img {
+  width: 20%;
+  height: 300px;
 }
 
 ul {
@@ -136,6 +141,11 @@ div[class^="series-list"]>ul {
 .input-search {
   width: 115px;
 }
+.search-container > button {
+  background-color: #F2D16F;
+  border-radius: 20px;
+}
+
 #date-filter {
   width: 136px;
   background: whitesmoke;
@@ -146,13 +156,6 @@ div[class^="series-list"]>ul {
   margin: 0 auto 10px;
   background-color: #DEB841;
 }
-
-
-
-
-
-
-
 
 .card-info>ul {
   list-style-type: none;
