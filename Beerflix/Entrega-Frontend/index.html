@@ -13,7 +13,7 @@
   <nav class="navbar">
     <div class="logo">
       <p class="beerlogo">
-        <a href="/">Beerflix</a>
+        <a href="/"><span>Beer</span>flix</a>
       </p>
     </div>
 
@@ -27,9 +27,15 @@
     </ul>
   </nav>
   <header class="header">
-    <div class="header-wrapper">
-      <img src="./img/beer-index.jpg" srcset="./img/beer-desktop.jpg 768w" alt="Header Image">
-    </div>
+    <picture class="header-wrapper">
+      <source media="(min-width: 768px)" srcset="./img/beer-desktop.jpg">
+      <!-- <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;"> -->
+      <img src="./img/beer-desktop.jpg" alt="Header Image">
+    </picture>
+    <div class="header-text">
+        <h2>Welcome to <span>Beer</span>flix!</h2>
+        <h3>Find the perfect <span>beer</span>.</h3>
+      </div>
   </header>
   <main class="main">
     <section class="lists-container">
