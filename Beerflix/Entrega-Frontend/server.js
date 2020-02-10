@@ -1,12 +1,12 @@
-const express = require('./node_modules/express');
-const PORT = 3000;
+const express = require('express');
+const PORT = 3030;
 
 const app = express();
 
 app.use(express.static('.'));
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get('/*', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.listen(PORT, () => {

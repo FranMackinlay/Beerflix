@@ -35,7 +35,7 @@ const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, 
           ${brewersTips}
         </div>
         <div class="comment-likes">
-          <p>Comments:</p>
+          <h2>Comments:</h2>
           <div id="commentForm">
           </div>
           <div id="commentList">
@@ -64,7 +64,6 @@ const commentsFormtemplate = `
   <div id="detail" class="detail-content"></div>
   <form id="comment-form" class="comment-form" novalidate>
     <div class="comment-input">
-      <label for="comment">Write your comment below: </label>
       <input required id="comment" placeholder="Add your comment" class="input primary" type="text">
     </div>
     <button type="submit" class="button primary">Add comment</button>
@@ -127,6 +126,13 @@ const renderDetail = async id => {
     ]);
     const template = detailTemplate(detail.beer);
     const mainSection = document.querySelector('main');
+    const header = document.querySelector('header');
+    header.style.display = 'none';
+    mainSection.style.margin = '10px auto';
+    mainSection.style.background = '#DEB841';
+    mainSection.style.padding = '10px';
+    mainSection.style.borderRadius = '20px';
+    
     
     
     mainSection.innerHTML = template;

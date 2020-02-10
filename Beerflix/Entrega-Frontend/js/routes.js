@@ -11,11 +11,8 @@ const formInput = document.getElementById('searchInput');
 page('/', () => {
   formInput.innerHTML = '';
   renderHomeBeers(getItem(INPUT_STORAGE_ID));  
-  
 });
 page('/beers/:id', (context) => {
-  console.log('Route /beers/:id');
-  console.log(context);
   const {params: { id }} = context;
   renderDetail(id);
 
