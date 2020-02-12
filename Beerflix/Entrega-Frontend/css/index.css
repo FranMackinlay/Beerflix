@@ -115,6 +115,10 @@ input {
   border-radius: 10px;
 }
 
+.beer-list {
+  text-align: center;
+}
+
 .series-list1 {
   text-align: center;
 }
@@ -188,6 +192,19 @@ a {
 main {
   width: 50%;
   margin: 0 auto;
+}
+
+.main-detail {
+  margin: 10px auto;
+  background-color: #DEB841;
+  padding: 10px;
+  border-radius: 20px;
+}
+.header-detail {
+  display: none;
+}
+.lists-detail {
+  display: none;
 }
 
 .image-container {
@@ -297,7 +314,9 @@ main {
   }
   #date-filter {
     width: 118px;
+    height: 24px;
   }
+  
   .beer-card {
     position: relative;
     display: flex;

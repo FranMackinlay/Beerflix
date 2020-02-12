@@ -1,6 +1,6 @@
 import api from './api.js';
 
-const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, brewersTips, likes} = {}) => {
+const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, brewersTips, likes } = {}) => {
   return `
     <div class="detail-section">
       <header id="${beerId}">
@@ -47,10 +47,6 @@ const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, 
   `;
 };
 
-const stringify = str => {
-  return JSON.stringify(str);
-};
-
 const commentTemplate = ({ comment, dateComment }) => {
   return `
     <div class="list-item">
@@ -60,7 +56,7 @@ const commentTemplate = ({ comment, dateComment }) => {
   `;
 };
 
-const commentsFormtemplate = `
+const commentsFormTemplate = `
   <div id="detail" class="detail-content"></div>
   <form id="comment-form" class="comment-form" novalidate>
     <div class="comment-input">
@@ -77,7 +73,7 @@ const { getComments, createComment, addLike } = api();
 
 const renderForm = id => {
   const formSection = document.getElementById('commentForm');
-  formSection.innerHTML = commentsFormtemplate;
+  formSection.innerHTML = commentsFormTemplate;
   const commentForm = document.getElementById('comment-form');
   const commentsInput = document.getElementById('comment');
   const commentsList = document.getElementById('commentList');
@@ -86,10 +82,10 @@ const renderForm = id => {
     if (commentsInput.validity.valid) {
       // Llamar API para crear comment
       const result = await createComment(id, commentsInput.value);
-      console.log(result);
+      // console.log(result[0].comment, result[0].dateComment);
 
       // Renderizo o pinto en el DOM
-      commentsList.innerHTML += commentTemplate(result);
+      commentsList.innerHTML = commentsList.innerHTML + commentTemplate(result[result.length - 1]);
       commentsInput.value = '';
     }
   });
@@ -108,13 +104,10 @@ const likesTemplate = likes => {
 const renderLikes = id => {
   const likeButton = document.getElementById('likeButton');
   likeButton.addEventListener('click', async event => {
-    console.log('click!!!');
     event.preventDefault();
     const firstLikes = document.getElementById('first-likes');
     const like = await addLike(id);
     firstLikes.innerHTML = likesTemplate(like);
-    // console.log(like); 
-
   });
 };
 
@@ -127,19 +120,16 @@ const renderDetail = async id => {
     const template = detailTemplate(detail.beer);
     const mainSection = document.querySelector('main');
     const header = document.querySelector('header');
-    header.style.display = 'none';
-    mainSection.style.margin = '10px auto';
-    mainSection.style.background = '#DEB841';
-    mainSection.style.padding = '10px';
-    mainSection.style.borderRadius = '20px';
-    
-    
-    
+    const listsDetail = document.querySelector('.lists-container');
+    listsDetail.classList.add('lists-detail');
+    mainSection.classList.add('main-detail');
+    header.classList.add('header-detail');
+
     mainSection.innerHTML = template;
     renderForm(id);
     renderLikes(id);
     const commentList = document.getElementById('commentList');
-    commentList.innerHTML +=  comments.map(commentTemplate).join('');
+    commentList.innerHTML += comments.map(commentTemplate).join('');
   } catch (err) {
     // manejo erores
     console.log(err);

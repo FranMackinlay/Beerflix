@@ -11,9 +11,12 @@ const searchInput = document.querySelector('.input-search');
 
 searchInput.value = getItem(INPUT_STORAGE_ID);
 
-searchForm.addEventListener('submit', event => {
+
+searchForm.addEventListener('click', event => {
   event.preventDefault();
   if (searchInput.validity.valid) {
+    console.log(searchInput.value);
+
     renderHomeBeers(searchInput.value);
     setItem(INPUT_STORAGE_ID, searchInput.value);
     searchForm.reset();

@@ -11,7 +11,7 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
         const response = await fetch(URL, {
           method: 'GET',
           headers: {
-            'Content-type' : 'application/json',
+            'Content-type': 'application/json',
             'X-API-KEY': API_KEY
           }
         });
@@ -20,7 +20,7 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
         }
         const data = await response.json();
         const beers = data.beers.map(result => {
-          if(result.beer){
+          if (result.beer) {
             return result.beer;
           }
           return result;
@@ -38,20 +38,20 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
           'X-API-KEY': API_KEY
         }
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Error retrieving beers ${id}`);
-        }
-        return response.json();
-      })
-      .catch(err => {
-        console.log(err.message);
-        throw err;
-      });
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Error retrieving beers ${id}`);
+          }
+          return response.json();
+        })
+        .catch(err => {
+          console.log(err.message);
+          throw err;
+        });
     },
     getComments: async id => {
       try {
-        const response = await fetch (`${API_URL}/beers/${id}`, {
+        const response = await fetch(`${API_URL}/beers/${id}`, {
           method: 'GET',
           headers: {
             'Content-type': 'application/json',
@@ -72,15 +72,15 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
     },
     createComment: async (id, text) => {
       try {
-        const response = await fetch (`${API_URL}/beers/${id}/comment`, {
+        const response = await fetch(`${API_URL}/beers/${id}/comment`, {
           method: 'POST',
-          body: JSON.stringify({comment : text}),
+          body: JSON.stringify({ comment: text }),
           headers: {
             'Content-type': 'application/json',
             'X-API-KEY': API_KEY
           }
         });
-        
+
         if (!response.ok) {
           throw new Error('Error createComment');
         }
@@ -95,14 +95,14 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
     },
     addLike: async (id) => {
       try {
-        const response = await fetch (`${API_URL}/beers/${id}/like`, {
+        const response = await fetch(`${API_URL}/beers/${id}/like`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
             'X-API-KEY': API_KEY
           }
         });
-        
+
         if (!response.ok) {
           throw new Error('Error createComment');
         }

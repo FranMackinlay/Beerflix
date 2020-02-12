@@ -28,26 +28,38 @@ const templateBeers = beer => {
 };
 
 const renderBeer = (element, items) => {
-  const htmlBeers = items.slice(0, 10).map(function(beer, index) {
-      if (index < 2) {
-        return templateBeers({ ...beer });
-      }
+  const htmlBeers = items.slice(0, 10).map(function (beer, index) {
+    if (index < 2) {
       return templateBeers({ ...beer });
-    })
-    .join('');
+
+    }
+    return templateBeers({ ...beer });
+  }).join('');
+
   element.innerHTML = `
-    ${htmlBeers}
+    <div class="beer-list">
+      ${htmlBeers}
+    </div>
   `;
 };
+
 
 const renderHomeBeers = async search => {
   try {
     const beers = await getBeers(search);
-    const beerList = document.getElementById('beer-list');
-    renderBeer(beerList, beers);
+    const mainSection = document.querySelector('main');
+    const header = document.querySelector('header');
+    const listsDetail = document.querySelector('.lists-container');
+
+    listsDetail.classList.remove('lists-detail');
+    mainSection.classList.remove('main-detail');
+    header.classList.remove('header-detail');
+
+    renderBeer(mainSection, beers);
+
   } catch (err) {
     console.log(err);
-  } 
+  }
 };
 
 export default renderHomeBeers;
