@@ -1,4 +1,5 @@
 import api from './api.js';
+import { renderLoader } from './ui.js'
 
 const { getBeers } = api();
 
@@ -46,6 +47,7 @@ const renderBeer = (element, items) => {
 
 const renderHomeBeers = async search => {
   try {
+    renderLoader('hide', 'show');
     const beers = await getBeers(search);
     const mainSection = document.querySelector('main');
     const header = document.querySelector('header');
@@ -59,6 +61,8 @@ const renderHomeBeers = async search => {
 
   } catch (err) {
     console.log(err);
+  } finally {
+    renderLoader('show', 'hide');
   }
 };
 

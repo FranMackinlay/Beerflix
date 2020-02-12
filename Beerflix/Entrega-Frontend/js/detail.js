@@ -1,4 +1,5 @@
 import api from './api.js';
+import { renderLoader } from './ui.js';
 
 const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, brewersTips, likes } = {}) => {
   return `
@@ -113,6 +114,7 @@ const renderLikes = id => {
 
 const renderDetail = async id => {
   try {
+    renderLoader('hide', 'show');
     const [detail, comments] = await Promise.all([
       getBeerDetail(id),
       getComments(id)
@@ -133,6 +135,8 @@ const renderDetail = async id => {
   } catch (err) {
     // manejo erores
     console.log(err);
+  } finally {
+    renderLoader('show', 'hide');
   }
 };
 
