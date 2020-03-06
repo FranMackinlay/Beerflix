@@ -1,5 +1,8 @@
-Entrega Desarrollo Frontend con Javascript.
+# Entrega Desarrollo Frontend con Javascript.
 
-Beerflix
+# How to run:
 
-Subido sin node_modules que son necesarios para usar express.
+1.- Run "npm install" to install necessary dependencies.
+
+2.- Run "npm start" to start express server.
+
