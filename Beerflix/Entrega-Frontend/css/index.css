@@ -18,7 +18,7 @@ body {
   padding: 0;
   background-color: #F2D16F;
   color: black;
-
+  min-width: 320px;
 }
 
 h1 {
@@ -247,11 +247,13 @@ main {
   .navbar>.navbar-list {
     display: none;
     flex-direction: column;
-    margin-top: 51px;
+    margin-top: 220px;
     justify-content: flex-start;
     padding: 0;
     text-align: center;
     color: black;
+    background-color: whitesmoke;
+    opacity: 0.8;
   }
 
   .logo {
